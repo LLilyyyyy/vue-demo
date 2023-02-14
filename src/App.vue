@@ -1,100 +1,158 @@
-<script setup>
+<script>
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
+
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper';
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [Autoplay, Pagination, Navigation],
+    };
+  },
+};
 </script>
 
 <template>
+<div class="container">
   <div class="header">
-    <div class="main_1200">
-      <div class="top_logo"><img src="./assets/Blue.svg"></div>
-      <div class="top_menu">
-        <ul>
-          <li><a href="#">Worlk</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="login">
-        <button>login</button>
-      </div>
+    <div class="logo"><img src="./assets/Blue.svg"></div>
+    <div class="menu">
+      <ul>
+        <li><a href="#">home</a ></li>
+        <li><a href="#">aboutus</a ></li>
+        <li><a href="#">contact</a ></li>
+      </ul>
+    </div>
+    <div class="login">
+      <a href="#">login</a>
     </div>
   </div>
-  
   <div class="banner">
-    <div><img src="../src/assets/Bitmap.png"></div>
+
+    <swiper
+        :autoplay="{
+          delay: 2500,
+          disableOnInteraction: false,
+        }"
+        :pagination="{
+          clickable: true,
+        }"
+        :navigation="true"
+        :modules="modules"
+        class="mySwiper"
+        :style="{
+           '--swiper-navigation-color': '#fff',
+          '--swiper-pagination-color': '#fff',
+        }">
+          <swiper-slide><img src="./assets/Bitmap.png" alt="img"></swiper-slide>
+          <swiper-slide><img src="./assets/Bitmap.png" alt="img"></swiper-slide>
+          <swiper-slide><img src="./assets/Bitmap.png" alt="img"></swiper-slide>
+    </swiper>
   </div>
+</div>
 </template>
 
 <style scoped>
-.header {
+.container{
   width: 100%;
   height: 100px;
-  background-color: #ffffff;
-  text-align: center;
 
 }
-.main_1200{
+.header {
   width: 1200px;
   height: 100px;
-  margin: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
-.top_logo{
-  float: left;
-  vertical-align:middle ;
-  padding-top: 30px;
-
+.logo {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
-.header .top_logo img {
-  width: 123px;
-  height: 40px;
+.logo img {
+  height:30px;
 }
-.top_menu {
-  width: 600px;
-  height: 100px;
-  float: left;
-  padding-left: 300px;
-  list-style-type: none;
-
-  }
-.top_menu li {
-  list-style-type: none;
-  float: left;
-  font-size: 14px;
-  color: #333333;
+.menu {
+  flex: 1;
+  height: 100%;
+}
+.menu ul {
+  display: flex;
+  justify-content: center;
+}
+.menu li {
+  list-style: none;
   width: 100px;
   line-height: 100px;
-  font-weight: bold;
-}
-.top_menu a:link {
-  text-decoration: none;
+  color: #181818;
   font-size: 14px;
-  color: #333333;
-  font-weight: bold;
+  text-transform: uppercase;
+
 }
-.top_menu a:visited {
+.menu a:link {
+  color: #2c3e50;
   text-decoration: none;
-  font-size: 14px;
-  color: #333333;
   font-weight: bold;
 }
-.top_menu a:hover {
-  color: #134DAB;
+.menu a:visited {
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: bold;
 }
-.top_menu a:active {
-  color: #134DAB;
+.menu a:hover {
+  color: aqua;
+  text-decoration: none;
+  font-weight: bold;
 }
-.login {
+.menu a:active {
+  color: aqua;
+  text-decoration: none;
+  font-weight: bold;
+}
+.login{
   width: 200px;
-  float:right;
-  padding-top: 23px;
+  height: 100px;
+  display: flex;
+  align-items: center;
 }
-.login button {
+.login a {
   width: 200px;
   height: 50px;
-  background-color:#134DAB;
-  color: #ffffff;
   border-radius: 5px;
-  font-size: 16px;
+  background-color: #2c3e50;
+  font-size: 14px;
+  color: #f2f2f2;
+  text-align: center;
+  line-height: 50px;
   font-weight: bold;
-  border-style: none;
-
+  text-decoration: none;
+}
+.login a:link{
+  background-color: #2c3e50;
+}
+.login a:visited {
+  background-color: #2c3e50;
+}
+.login a:hover {
+  background-color: aqua;
+}
+.banner img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
 }
 </style>
